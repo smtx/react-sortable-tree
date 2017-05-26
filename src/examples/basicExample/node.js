@@ -1,40 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { DragSource } from 'react-dnd';
 import styles from './stylesheets/app.scss';
-
-const dragSource = {
-    beginDrag(props) {
-        return { node: { ...props.node }, path: [], type: 'newItem' };
-    },
-
-    endDrag(props, monitor) {
-        if (!monitor.didDrop()) {
-            return;
-        }
-        props.addNewItem(monitor.getDropResult());
-    }
-};
-
-function collect(connect, monitor) {
-    return {
-        connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging()
-    };
-}
-
+import ExternalItemWrapper from './../../external-item-wrapper';
 
 class Node extends Component {
     render() {
-        const { connectDragSource } = this.props;
-
-        return connectDragSource(
-            <span className={styles['new-node']}>{this.props.node.title}</span>, { dropEffect: 'copy' }
-        );
+        return (<span className={styles['new-node']}>{this.props.node.title}</span>);
     }
 }
 
 Node.propTypes = {
-    connectDragSource: PropTypes.func.isRequired,
     node: PropTypes.object.isRequired,
 };
-export default DragSource('NEW_NODE', dragSource, collect)(Node);
+export default ExternalItemWrapper('NEW_NODE')(Node);

@@ -26,12 +26,12 @@ function getReactElementText(parent) {
 // Search for a query string inside a node property
 function stringSearch(key, searchQuery, node, path, treeIndex) {
     if (typeof node[key] === 'function') {
-        return String(node[key]({ node, path, treeIndex })).indexOf(searchQuery) > -1;
+        return String(node[key]({ node, path, treeIndex })).toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
     } else if (typeof node[key] === 'object') {
-        return getReactElementText(node[key]).indexOf(searchQuery) > -1;
+        return getReactElementText(node[key]).toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
     }
 
-    return node[key] && String(node[key]).indexOf(searchQuery) > -1;
+    return node[key] && String(node[key]).toLowerCase().indexOf(searchQuery.toLowerCase()) > -1;
 }
 
 export function defaultSearchMethod({ node, path, treeIndex, searchQuery }) {

@@ -4,7 +4,8 @@ import ExternalItemWrapper from './../../external-item-wrapper';
 
 class Node extends Component {
     render() {
-        return (<span className={styles['new-node']}>{this.props.node.title}</span>);
+        return (
+            <div className={styles['new-node']}>{this.props.node.title}</div>);
     }
 }
 

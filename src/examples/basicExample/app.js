@@ -263,7 +263,12 @@ class App extends Component {
                     <p>Drag below nodes into the tree to insert.</p>
                     <div>
                         {newNodes.map((node, index) =>
-                            <Node key={index} node={node} addNewItem={this.addItem} dropCancelled={this.dropCancelled} />
+                            <Node
+                                key={index}
+                                node={node}
+                                addNewItem={this.addItem}
+                                dropCancelled={this.dropCancelled}
+                            />
                         )}
                     </div>
                     <button onClick={this.expandAll}>
